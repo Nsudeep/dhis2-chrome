@@ -24,6 +24,16 @@ define(["lodash"], function(_) {
         chrome.storage.local.get("auth_header", callback);
     };
 
+    var addChart = function(chartId, chartData, callback) {
+        var data = {};
+        data[chartId] = chartData;
+        return chrome.storage.local.set(data, callback);
+    };
+
+    var getChart = function(chartId, callback) {
+        chrome.storage.local.get(chartId, callback);
+    };
+
     var createNotification = function(title, message) {
         var options = {
             "type": "basic",
@@ -41,6 +51,8 @@ define(["lodash"], function(_) {
         "sendMessage": sendMessage,
         "setAuthHeader": setAuthHeader,
         "getAuthHeader": getAuthHeader,
+        "addChart": addChart,
+        "getChart": getChart,
         "createNotification": createNotification
     };
 });
